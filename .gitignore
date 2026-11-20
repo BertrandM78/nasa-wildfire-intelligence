@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Données intermédiaires (régénérées par le notebook)
+data/processed/*
+!data/processed/.gitkeep
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
