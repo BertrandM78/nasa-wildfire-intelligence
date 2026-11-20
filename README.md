@@ -32,7 +32,7 @@ reports/          figures, export du dashboard, slides
 
 ## Installation
 ```bash
-python3 -m venv .venv
+python3.12 -m venv .venv        # Python 3.12 recommandé (compatibilité geopandas / statsmodels)
 source .venv/bin/activate        # fish : source .venv/bin/activate.fish
 pip install -r requirements.txt
 jupyter notebook notebooks/
