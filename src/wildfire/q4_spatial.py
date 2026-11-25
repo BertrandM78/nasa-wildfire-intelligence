@@ -55,6 +55,9 @@ def summarize_clusters(clustered):
 # Function: plot_clusters
 # Carte interactive : les `top` foyers les plus énergétiques en couleur,
 # les autres foyers en gris clair, le bruit masqué.
+# Carte vectorielle (scatter_geo) : pas de fond de carte à télécharger ni de WebGL,
+# donc elle s'affiche hors ligne, dans tout navigateur et dans les exports HTML/PDF.
+# Le cadrage est calculé sur les `top` foyers, avec une marge de 2 degrés.
 # Input:  clustered (DataFrame), summary (DataFrame de summarize_clusters), top (int)
 # Output: figure plotly
 def plot_clusters(clustered, summary, top=10):
@@ -65,12 +68,20 @@ def plot_clusters(clustered, summary, top=10):
     pts["rank"] = pts["cluster"].map(summary.set_index("cluster")["rank"])
     pts["foyer"] = pts["cluster"].map(name_of)
     order = list(names.head(top))
-    fig = px.scatter_map(pts.sort_values("rank", ascending=False), lat="latitude", lon="longitude",
+    pts["date"] = pts["acq_date"].dt.strftime("%d/%m/%Y")  # date lisible au survol
+    top_pts = pts[pts["rank"] <= top]
+    fig = px.scatter_geo(pts.sort_values("rank", ascending=False), lat="latitude", lon="longitude",
                          color="foyer", category_orders={"foyer": order + ["autres foyers"]},
                          color_discrete_map={"autres foyers": "lightgrey"},
-                         hover_data={"acq_date": True, "frp": True, "foyer": False},
-                         zoom=3.6, center=dict(lat=40.5, lon=-114), height=600, map_style="carto-positron")
-    fig.update_traces(marker=dict(size=5))
+                         hover_data={"date": True, "frp": True, "foyer": False,
+                                     "latitude": False, "longitude": False},
+                         height=600)
+    fig.update_traces(marker=dict(size=4, line=dict(width=0)))
+    fig.update_geos(scope="north america", projection_type="mercator",
+                    resolution=50, showsubunits=True, subunitcolor="#999",  # frontières des États
+                    showland=True, landcolor="#f4f4f4", showlakes=False,
+                    lonaxis_range=[top_pts["longitude"].min() - 2, top_pts["longitude"].max() + 2],
+                    lataxis_range=[top_pts["latitude"].min() - 2, top_pts["latitude"].max() + 2])
     fig.update_layout(title=f"Q4 — Foyers d'incendie détectés par DBSCAN (top {top} en couleur)",
                       margin=dict(l=0, r=0, t=50, b=0))
     return fig

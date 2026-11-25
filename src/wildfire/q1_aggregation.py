@@ -35,7 +35,8 @@ def aggregate_by_year_region(df):
 # Input:  agg (DataFrame de aggregate_by_state), metric (str) — colonne à afficher
 # Output: figure plotly
 def plot_state_map(agg, metric="total_frp_gw"):
-    titles = {"total_frp_gw": "Énergie cumulée des feux (GW)", "n_detections": "Nombre de détections"}
+    titles = {"total_frp_gw": "Énergie cumulée des feux (GW)", "n_detections": "Nombre de détections",
+              "median_frp": "FRP médiane (MW)"}
     fig = px.choropleth(agg, locations="state", locationmode="USA-states", scope="usa",
                         color=metric, color_continuous_scale="OrRd",
                         hover_name="state_name",

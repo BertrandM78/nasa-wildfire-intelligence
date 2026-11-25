@@ -20,3 +20,17 @@ STATES_FILE = DATA_EXTERNAL / "cb_2018_us_state_20m.zip"
 CLEAN_FILE = DATA_PROCESSED / "fires_clean.parquet"
 
 DATASET_NAME = "NASA FIRMS — MODIS Collection 6 Active Fires (USA, 2010-2020)"
+EXTERNAL_DATASET_NAME = "US Census Bureau — limites des États 2018 (cb_2018_us_state_20m)"
+
+TEAM = [
+    "Bertrand MAIGRE (chef d'équipe)",
+    "Victor MICHELON",
+    "Jean Baptiste PASTEAU",
+    "Oscar DUJARDIN",
+]
+GITHUB_URL = "https://github.com/BertrandM78/nasa-wildfire-intelligence"
+
+# Livrables (nommés d'après le chef d'équipe, comme exigé par les consignes)
+REPORTS = ROOT / "reports"
+DASHBOARD_HTML = REPORTS / "Maigre_dashboard.html"
+DASHBOARD_PDF = REPORTS / "Maigre_dashboard.pdf"
