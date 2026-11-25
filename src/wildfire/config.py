@@ -12,4 +12,25 @@ FIGURES = ROOT / "reports" / "figures"
 ARCHIVE_FILE = DATA_RAW / "fire_archive_M6_156000.csv.gz"
 NRT_FILE = DATA_RAW / "fire_nrt_M6_156000.csv.gz"
 
+# Dataset externe : limites des États (US Census Bureau, 2018, 1:20M)
+# Source : https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_us_state_20m.zip
+STATES_FILE = DATA_EXTERNAL / "cb_2018_us_state_20m.zip"
+
+# Données nettoyées et enrichies (cache régénéré par le notebook)
+CLEAN_FILE = DATA_PROCESSED / "fires_clean.parquet"
+
 DATASET_NAME = "NASA FIRMS — MODIS Collection 6 Active Fires (USA, 2010-2020)"
+EXTERNAL_DATASET_NAME = "US Census Bureau — limites des États 2018 (cb_2018_us_state_20m)"
+
+TEAM = [
+    "Bertrand MAIGRE (chef d'équipe)",
+    "Victor MICHELON",
+    "Jean Baptiste PASTEAU",
+    "Oscar DUJARDIN",
+]
+GITHUB_URL = "https://github.com/BertrandM78/nasa-wildfire-intelligence"
+
+# Livrables (nommés d'après le chef d'équipe, comme exigé par les consignes)
+REPORTS = ROOT / "reports"
+DASHBOARD_HTML = REPORTS / "Maigre_dashboard.html"
+DASHBOARD_PDF = REPORTS / "Maigre_dashboard.pdf"
