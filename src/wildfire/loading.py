@@ -21,3 +21,19 @@ def merge_archive_nrt(archive, nrt):
     nrt = nrt.assign(source="nrt")
     # Le NRT n'a pas de colonne `type` : elle sera NaN pour ces lignes (traité en phase 2)
     return pd.concat([archive, nrt], ignore_index=True)
+
+
+# Function: save_processed
+# Sauvegarde les données nettoyées au format parquet (lecture ~10x plus rapide que le CSV).
+# Input:  df (DataFrame), file_path (str | Path)
+# Output: aucun (écrit le fichier)
+def save_processed(df, file_path):
+    df.to_parquet(file_path, index=False)
+
+
+# Function: load_processed
+# Recharge les données nettoyées depuis le cache parquet.
+# Input:  file_path (str | Path)
+# Output: DataFrame
+def load_processed(file_path):
+    return pd.read_parquet(file_path)

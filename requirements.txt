@@ -8,10 +8,10 @@ jupyter>=1.0
 ipykernel>=6.29
 
 # Phases suivantes (décommenter au besoin)
-# geopandas>=0.14     # Q1 : jointure spatiale avec les États US
-# mlxtend>=0.23       # Q2 : Apriori / règles d'association
-# statsmodels>=0.14   # Q3 : SARIMA
-# scikit-learn>=1.4   # Q4 : DBSCAN haversine
-# plotly>=5.20        # figures interactives
+geopandas>=0.14       # Q1 : jointure spatiale avec les États US
+mlxtend>=0.23         # Q2 : Apriori / règles d'association
+statsmodels>=0.14     # Q3 : SARIMA
+scikit-learn>=1.4     # Q4 : DBSCAN haversine
+plotly>=5.24          # figures interactives
 # dash>=2.17          # dashboard
 # nbformat>=5.10      # assemblage du notebook final
